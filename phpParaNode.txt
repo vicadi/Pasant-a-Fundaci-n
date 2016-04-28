@@ -1,0 +1,5 @@
+sudo apt-get install php5-common php5-cli -y
+sudo apt-get install php5-mcrypt -y
+sudo php5enmod mcrypt
+sudo service apache2 restart
+

@@ -1,0 +1,103 @@
+extends ../../../views/layout
+block content
+  #paginaDonacion
+    h1 APÓYANOS  
+    #formulario
+      form(method="POST" action="/hacerdonacion") 
+        input(type="text" name="nombre" placeholder="NOMBRE" required)
+        input(type="text" name="apellido" placeholder="APELLIDO" required)           
+        input(type="tel" name="telefono" placeholder="TELEFONO")
+        input(type="email" name="email" placeholder="CORREO ELECTRONICO" required)
+        span ¿CÓMO QUIERES AYUDARNOS?
+        #opciones
+          #dinero 
+            label.checkboxDonacion
+              input#checkDinero(type="checkbox" name="dinero")
+              span
+            span  &nbsp; EN DINERO
+          #tiempo 
+            label.checkboxDonacion
+              input(type="checkbox" name="tiempo")
+              span
+            span  &nbsp; EN TIEMPO
+          #especie
+            label.checkboxDonacion
+              input(type="checkbox" name="especie")
+              span
+            span  &nbsp; EN ESPECIE
+        input#cantidad(type="number" name="cantidad" placeholder="CÚAL ES EL VALOR DE TU APORTE?" min="30000" style="display:none")
+        textarea.form-control(rows="5" name="comentario" placeholder="COMENTARIO")
+        button.btn(type="submit")
+          b OK 
+
+    #confirmacion
+      if datosDonacion
+        script(type="text/javascript").
+          vistaDonacion=true;
+        if datosEncryptados
+          form#formConfirmacion(method="POST" action="https://prod.mobilecard.com.co/AddcelColombiaWeb/login")
+            input(type="hidden" name="json" value=datosEncryptados.json)
+            input(type="hidden" name="comercio" value=datosEncryptados.comercio)
+            h4 Estos son los datos que ingresaste - ¿Deseas Continuar?
+            #datosDonacion
+              span.rosado NOMBRE: 
+              span.gris &nbsp; #{datosDonacion.nombre}
+              br
+              span.rosado APELLIDO: 
+              span.gris &nbsp; #{datosDonacion.apellido}
+              br
+              span.rosado TELEFONO:
+              span.gris &nbsp; #{datosDonacion.telefono}
+              br
+              span.rosado CORREO ELECTRONICO:
+              span.gris &nbsp; #{datosDonacion.email} 
+              br
+              span.rosado AYUDAR CON:
+              span.gris 
+                if datosDonacion.tiempo
+                  |&nbsp; Tiempo
+                if datosDonacion.especie
+                  |&nbsp; Especie
+                if datosDonacion.dinero
+                  |&nbsp; Dinero
+              br
+              if datosDonacion.dinero
+                span.rosado CANTIDAD A DONAR:
+                span.gris #{datosDonacion.cantidad}
+                br
+              span.rosado COMENTARIO:
+              span.gris &nbsp; #{datosDonacion.comentario}
+            button#bDinero.btn(type="submit")
+              b SI             
+            button.btn(type="button" onclick="location.href='/hacerdonacion'")
+              b NO 
+        else
+          h4 Estos son los datos que ingresaste - ¿Deseas Continuar?
+          #datosDonacion
+            span.rosado NOMBRE: 
+            span.gris &nbsp; #{datosDonacion.nombre}
+            br
+            span.rosado APELLIDO: 
+            span.gris &nbsp; #{datosDonacion.apellido}
+            br
+            span.rosado TELEFONO:
+            span.gris &nbsp; #{datosDonacion.telefono}
+            br
+            span.rosado CORREO ELECTRONICO:
+            span.gris &nbsp; #{datosDonacion.email} 
+            br
+            span.rosado AYUDAR CON:
+            span.gris 
+              if datosDonacion.tiempo
+                |&nbsp; Tiempo
+              if datosDonacion.especie
+                |&nbsp; Especie
+              if datosDonacion.dinero
+                |&nbsp; Dinero
+            br
+            span.rosado COMENTARIO:
+            span.gris &nbsp; #{datosDonacion.comentario}
+          button#tiempoEspecie.btn(type="button")
+            b SI 
+          button.btn(type="button" onclick="location.href='/hacerdonacion'")
+            b NO

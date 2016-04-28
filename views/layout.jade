@@ -1,0 +1,166 @@
+doctype html
+html
+  head    
+    meta(name="description" content="Conexión Bienestar es una fundación que ayuda a que la gente viva mejor, difundiendo conocimiento en salud física, salud emocional y salud espiritual.")
+    meta(name="keywords" content="Conexión, bienestar, ayuda, estrellas, salud espiritual, salud fisica, salud emocional")
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    title= title
+    link(rel='stylesheet' href='/css/bootstrap.min.css')
+    link(rel='stylesheet' href='/css/core.css') 
+    link(rel='stylesheet' href='/css/yamm.css')
+    link(rel='stylesheet' href='/css/page.css')
+    link(rel='stylesheet' href='/css/style.css')
+    script(type='text/javascript' src='/js/jquery-1.11.2.min.js')
+    script(type='text/javascript' src='/js/page.js')
+    script(type='text/javascript' src='/js/bootstrap.min.js')
+    script(type='text/javascript' src='/js/bootbox.min.js')
+    script(type='text/javascript' src='/js/core.js')
+    script(type='text/javascript' src='/js/script.js') 
+    block head
+  body
+    script(type="text/javascript").
+      var message= "#{message}";
+      if(message)
+        bootbox.alert(message);  
+    .navbar.yamm.navbar-default
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href="/")
+            img(alt="Brand" src="/images/logo_metalizado.png")
+          button.navbar-toggle(type="button" data-toggle="collapse" data-target="#navbar-collapse-1")
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+        #navbar-collapse-1.navbar-collapse.collapse
+          ul#ulPrincipal.nav.navbar-nav
+            if menus 
+              -var contador=0
+              each menu, index in menus 
+                if index < 5
+                  -contador++
+                  li.dropdown.yamm-fw(id="li"+(index+1))
+                    .colorMenu(id="colorMenu"+(index+1) color=menu.color)
+                    if menu.submenus.length>0
+                      a.dropdown-toggle(data-toggle="dropdown" href="javascript:void(0);" idDiv="colorMenu"+(index+1) li="li"+(index+1)) 
+                        b #{menu.titulo}
+                      ul.submenus.dropdown-menu.colorSubmenu(id="colorSubmenu"+(index+1))
+                        li
+                          .yamm-content
+                            .row
+                              .col-sm-8
+                                ul.yamm-content.list-unstyled(role="menu")
+                                  each submenu, index in menu.submenus
+                                    li
+                                      if submenu.urlInterna!='none'
+                                        a.tituloSubmenu(tabindex="-1" href="/"+submenu.urlInterna) 
+                                          b &bull;  #{submenu.titulo}
+                                      else
+                                        a.tituloSubmenu(tabindex="-1" href=submenu.urlExterna) 
+                                          b &bull;  #{submenu.titulo}
+                                    if index<(menu.submenus.length-1)
+                                      li.divider
+                              .divImagenSubmenu.col-sm-4
+                                img(src="/images/logoBlanco.png")
+                    else
+                      if menu.urlExterna
+                        a.dropdown-toggle(href=menu.urlExterna idDiv="colorMenu"+(index+1) li="li"+(index+1)) 
+                          b #{menu.titulo}
+                      else 
+                        a.dropdown-toggle(href="/"+menu.urlInterna idDiv="colorMenu"+(index+1) li="li"+(index+1)) 
+                          b #{menu.titulo}                        
+                      
+              if menus.length>5
+                li.dropdown.yamm-fw.mas
+                  .colorMenu
+                  a.dropdown-toggle(data-toggle="dropdown" href="javascript:void(0);") 
+                    b +               
+                  ul.dropdown-menu
+                    li
+                      .yamm-content
+                        .row
+                          each menu, index in menus 
+                            if index >= 5  
+                              ul.col-sm-2.list-unstyled                                  
+                                if menu.submenus!=""
+                                  li
+                                    a(href="javascript:void(0);")
+                                      p
+                                        strong #{menu.titulo}
+                                  each submenu in menu.submenus
+                                    li
+                                      if submenu.urlInterna!='none'
+                                        a(href="/"+submenu.urlInterna) #{submenu.titulo} 
+                                      else
+                                        a(href=submenu.urlExterna) #{submenu.titulo} 
+                                else
+                                  li
+                                    if menu.urlInterna!='none'
+                                      a(href="/"+menu.urlInterna)
+                                        p
+                                          strong #{menu.titulo}
+                                    else
+                                      a(href=menu.urlExterna)
+                                        p
+                                          strong #{menu.titulo}
+                                li.divider
+
+          a(href="/estrellas")
+            button#botonDonar.nav.navbar-nav.navbar-right 
+              b DONAR
+
+    header#menuLateral.fixed
+      section
+        article.inner_header.rosado.fixed
+          #parametrosBuscar
+            form#formularioBuscar(method="POST", action="/admin/pagina/buscar")
+              #palabraBuscar
+                input(type="text" name="busqueda" placeholder="REALIZAR BUSQUEDA" required)
+              #botonBuscar
+                button.btn(type="submit") 
+                  b OK
+          #resultadoBuscar
+            ul 
+        article.inner_header.morado.fixed
+          #ayudaConexion
+            #tituloAyuda
+              h3 &bull; CÓMO APOYARNOS
+            p Pueden ayudarnos realizando donaciones mensuales a partir de $30 mil pesos, donaciones en especie y donaciones en tiempo de trabajo como voluntarios.
+            #tuDonacionAqui
+              h3 TU DONACIÓN AQUÍ 
+              button.btn(type="button" onclick="location.href='/hacerdonacion'") 
+                b DONAR 
+      nav(class="")
+        ul
+          li
+            a.abrir(href="javascript:void(0);" id="rosado") 
+              img(src="/images/buscar.svg")
+          li
+            a(href="https://www.facebook.com/conexionybienestar?ref=hl") 
+              img(src="/images/facebookBlanco.svg")
+          li
+            a(href="https://twitter.com/conexbienestar") 
+              img(src="/images/twitterBlanco.svg")
+          li
+            a(href="https://instagram.com/conexionbienestar/") 
+              img(src="/images/instagramBlanco.svg")
+          li
+            a.abrir(href="javascript:void(0);" id="morado")
+              img(src="/images/sos.png")
+    #contenido
+      block content
+
+    #piePagina
+      div
+        a(href="/PoliticasProteccionDatosPersonales") POLÍTICAS DE PRIVACIDAD
+        span.guion &nbsp; - &nbsp;
+        a(href="/terminosCondiciones") TÉRMINOS Y CONDICIONES
+        span.guion &nbsp; - &nbsp;
+        span FUNDACIÓN CONEXIÓN BIENESTAR &copy; 2015
+        span.guion &nbsp; - &nbsp;
+        if user
+          a(href="/admin") ADMINISTRAR CONTENIDO
+          span.guion &nbsp; - &nbsp; 
+          a(href="/user/logout") CERRAR SESIÓN              
+        else
+          a#aLogin(href="javascript:void(0);") ADMINISTRAR CONTENIDO

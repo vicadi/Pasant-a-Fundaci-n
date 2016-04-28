@@ -1,0 +1,1536 @@
+/*Mixins*/
+  radio-buttons(color)
+    width 20px
+    height 20px 
+    float left
+    padding-top 1%
+    :hover 
+      cursor pointer
+    input 
+      display none
+
+    span 
+      width 20px !important
+      height 20px
+      display block
+      background-color white
+      border 1.8px solid color            
+
+    input:checked + span 
+      background-color color
+      padding 4%
+  color-placeholder-input(color)
+    input::-webkit-input-placeholder
+      color color
+    input:-moz-placeholder 
+      color color
+    input::-moz-placeholder 
+      color color
+    input:-ms-input-placeholder 
+      color color
+  color-placeholder-textarea(color)
+    textarea::-webkit-input-placeholder
+      color color 
+    textarea:-moz-placeholder 
+      color color 
+    textarea::-moz-placeholder 
+      color color 
+    textarea:-ms-input-placeholder 
+      color color 
+/*fuente*/
+  @font-face
+    font-family 'Open Sans',Arial,Helvetica,sans-serif;
+
+body 
+  font-family Arial !important
+  overflow-x hidden
+  h1
+    font-family Arial !important
+  span
+    font-family Arial !important
+  p 
+    font-family Arial !important
+color-placeholder-input(gray)
+.btn 
+  border-radius 0
+.modal-content
+  margin-top 40%
+
+/*Layout*/
+  .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover
+    background-color white
+  .navbar-default 
+    border-color white
+  .navbar
+    border-radius 0
+    top -50px
+    position fixed
+    z-index 2000
+    right 0
+    left 0
+    background white
+    margin-bottom 0
+    .container-fluid
+      margin 0.5% 0
+      .navbar-header
+        margin-left 1%
+        img 
+          height 125%
+        a.navbar-brand
+          padding 0 0 0 1%
+      #navbar-collapse-1
+        padding-left 10%
+        overflow hidden
+        a 
+          #botonDonar
+            width 10%
+            margin 0.5%
+            height 40px 
+            font-size 20px 
+            color white
+            background-color #00c7fc
+            border-color #00c7fc
+            
+        ul.nav.navbar-nav 
+          z-index 2000
+          max-width 100%
+          li 
+            min-width 100px
+            .colorMenu 
+              visibility hidden 
+              margin auto 5%
+              width 90%
+              min-height 8px
+              padding 0 5px
+            a.dropdown-toggle
+              text-align center
+              font-size 18px
+              b 
+                color #998F8F
+            ul.submenus.dropdown-menu.colorSubmenu
+              box-shadow none
+              margin 0 130px 0 115px
+              border 1px solid white
+              min-height 300px
+              padding-top -5px
+              a b 
+                color white                
+              a:hover
+                color white
+              .divImagenSubmenu
+                img
+                  width 100%
+                  margin 70px 5%  0 -5%
+          li.dropdown.yamm-fw.mas
+            margin-left -7px
+            a b 
+              font-size 20px
+            ul.dropdown-menu
+              background-color #BDBDBD
+              margin 0 8%
+              a 
+                color white
+  /*Login*/
+    #login
+      width 100%
+      #datos 
+        width 70%
+        padding 2%
+        margin auto
+        input 
+          text-align center
+          margin 2%
+          width 93%
+          height 30px
+          color #696363
+        input::-webkit-input-placeholder
+          color #696363
+          font-size 16px
+        input:-moz-placeholder 
+          color #696363
+          font-size 16px
+        input::-moz-placeholder 
+          color #696363
+          font-size 16px
+        input:-ms-input-placeholder 
+          color #696363
+          font-size 16px
+      button#botonLogin
+        width 63%
+        height 30px
+        margin-left 18%
+        margin-top 2%
+        text-align center
+        background-color #696363
+        color white
+  /*Fin Login*/
+
+  #contenido
+    width 100%
+    padding-bottom 2%
+  /*Barra Lateral*/
+    header
+      bottom 4%
+      background none
+      padding-top 0px
+      
+      nav 
+        top 25%      
+        li 
+          margin-bottom 5px
+          height auto
+          width 40px
+          padding 1px 1px 1px 1px
+          text-align center
+          background rgba(158, 158, 158, 0.6)
+          img 
+            width 30px 
+      
+      #parametrosBuscar
+        width 80%
+        margin 5% 10% 5% 10%
+        padding 3px 3px 3px 3px 
+        #palabraBuscar
+          margin-right 5px
+          width 70%
+          float left
+          input 
+            text-align center
+            width 100%
+            height 35px
+            background rgba(255, 255, 255, 0.8)
+            color #696363
+            font-size 16px
+          input::-webkit-input-placeholder
+            color #696363
+            font-size 16px
+          input:-moz-placeholder 
+            color #696363
+            font-size 16px
+          input::-moz-placeholder 
+            color #696363
+            font-size 16px
+          input:-ms-input-placeholder 
+            color #696363
+            font-size 16px
+        #botonBuscar
+          width 15%
+          height 35px
+          margin-left 13%
+          float left
+          text-align center
+          button
+            background-color white
+            color #696363
+            width 100%
+            
+      #resultadoBuscar
+        background rgba(255, 255, 255, 0.8)
+        width 80%
+        margin 5% 10% 5% 10%
+        float left
+        height 80%
+        overflow scroll
+        ul 
+          width 100%
+          height 100%
+          list-style none
+          li 
+            margin 2% 5% 2% 5%
+            a
+              text-decoration none
+              span b
+                color #e58799
+              p 
+                color #555
+          li.linea 
+            height 5px
+            border-top 1px solid #e58799
+            border-bottom 1px solid #e58799 
+
+      #ayudaConexion
+        padding 7%
+        #tituloAyuda
+          border-bottom 2px solid white
+          h3 
+            color white
+        p 
+          padding 3%
+          color white
+          text-align justify
+        #tuDonacionAqui
+          margin-top 10%
+          float left
+          width 100%
+          height 24px
+          padding-top 0
+          text-align center
+          h3 
+            color white
+          button
+            margin-top 2%
+            width 100%
+            height 100px
+            background-color white 
+            color #696363  
+            b 
+              font-size 30px       
+    .inner_header
+      height 550px 
+  #piePagina
+    left 0
+    bottom 0 !important
+    float left
+    width 100%
+    height 60px
+    background-color #696363
+    padding 2% 2%
+    div
+      margin auto 
+      text-align center
+      span
+        color white
+        font-size 16px
+      a 
+        color white
+        font-size 16px     
+/*Fin Layout*/      
+   
+/*Home*/
+  #slider
+    #sliderImagenes
+      padding-top 3%
+      padding-bottom 3%
+      width 100%
+      iframe 
+        height 400px
+      li 
+        border 1.5px solid white
+        div 
+          border-left none
+          text-align center
+          h3
+            text-align center
+          .leermasSlider 
+            width 100%
+            text-align center
+            a
+              text-decoration none
+              margin auto
+              padding 0.5% 5%
+              border 1.5px solid white
+              b 
+                color white       
+      #flechaAbajo
+        position absolute
+        width 30px
+        height 30px
+        right -20%
+        top 85%
+        padding 1% 0
+        background rgba(158,158,158,0.6)
+        img 
+          width 100%
+          height 15px
+        img#img2
+          margin-top -55px
+    
+    a.flecha
+      background-color transparent
+      border-radius none
+      box-shadow none
+
+  #seccionesPrincipales
+    width 100%
+    float left
+    margin 2% 0 3% 0
+    
+    /*#banner 
+      width 90%
+      margin 2% 5%
+      float left
+      min-height 80px
+      background-color #e4e4e4*/
+    #cardDonar
+      background-color #00c7fc
+      padding 1%
+      text-align center
+      p
+        color white
+        font-size 20px
+        width 100%
+        text-align center
+      img 
+        width 50%
+    #cardVideo
+      padding 1%
+      //background-color #d273cd
+      p 
+        color #998f8f
+        font-size 20px
+        width 100%
+        text-align center
+    #cards 
+      width 96%
+      margin 0 2%
+      .card
+        width 23%
+        float left
+        height 200px
+        margin 2% 1% 7% 1%
+        .contenidoCard
+          padding 1%
+          height 200px   
+          .imagenDescripcion
+            width 100%
+            text-align center
+            img 
+              width 80%
+              max-height 150px
+          .descripcion 
+            margin-top 15px
+            padding 2px 1% 1% 1%
+            width 100%
+            p 
+              text-align justify
+              height 60px 
+              overflow hidden
+              color gray
+          .descripcionSinImagen
+            height 200px
+            width 100% 
+            overflow hidden
+            display table
+            p 
+              text-align justify
+              color gray
+              display table-cell
+              vertical-align middle
+              
+        a 
+          text-decoration none
+          .leerMas   
+            border 1.5px gray solid
+            bottom 0
+            margin 11% auto auto auto 
+            text-align center
+            width 100px
+            color gray
+            font-size 13px
+
+      /*#cardFisico 
+        background-color #00bb41
+        .descripcion 
+          p 
+            color white
+        .descripcionSinImagen
+          p 
+            color white
+        .leerMas
+          border 1.5px white solid
+          color white
+      #cardEmocional 
+        background-color #36abd0
+        .descripcion 
+          p 
+            color white
+        .descripcionSinImagen
+          p 
+            color white
+        .leerMas
+          border 1.5px white solid
+          color white
+      #cardEspiritual 
+        background-color #8762ab
+        .descripcion 
+          p 
+            color white
+        .descripcionSinImagen
+          p 
+            color white
+        .leerMas
+          border 1.5px white solid
+          color white*/
+
+  #agregarContenidoScroll
+    width 100%
+    text-align center
+    float left
+    color gray
+
+  #masContenido
+    float left
+    width 100%
+    #linea1
+      float left
+      border-top 1.5px solid gray
+      width 39%
+    a 
+      text-decoration none
+      width 18%
+      float left
+      margin -1.5% 2% 0 2%
+      padding 4px 4px 4px 4px
+      #centro 
+        border 1.5px solid gray        
+        text-align center
+        color gray
+        width 100%
+        height 30px
+        font-size larger
+    #linea2
+      float left
+      border-top 1.5px solid gray
+      width 39%
+      text-align right
+      padding 1% 0 1% 0
+      button
+        background-color #696363
+        border 1px solid #696363
+        b 
+          color white
+/*Fin Home*/
+
+/*Agregar paginas*/          
+  #pagina
+    width 100%
+    padding 3% 10% 3% 10%
+    h3 
+      text-align center
+    #tablaCampos
+      width 100%
+      .columnaVisible
+        width 100%
+        height auto
+        padding 1% 1% 1% 1%
+        text-align center
+        span
+          padding 5px 15px 5px 5px
+        input
+          padding 5px 5px 5px 5px 
+          transform scale(2,2)
+      .columnaPequena
+        width 8%
+        height auto
+        padding 1% 1% 1% 1%
+      .columnaGrande
+        width 92%
+        height auto
+        padding 1% 1% 1% 1%
+        text-align center
+        input 
+          width 80%
+          height 30px
+        #inputImagen
+          margin-left 10%
+        textarea
+          width 80%
+          height 60px
+        select
+          width 50%
+          height 30px
+          margin-left 10%
+        #textContenido
+          width 100%
+          
+    #tablaBotones
+      width 100%
+      height auto    
+      padding 3% 0 3% 0
+      tr td
+        text-align center
+      td#regresar
+        button
+          a 
+            text-decoration none
+            color #fff
+/*Fin Agregar Páginas*/
+      
+/*No administrador*/
+  #noAdmin
+    padding-top 10%
+    width 100%
+    h1
+      text-align center
+/*Fin no administrador*/
+
+/*editar paginas*/
+  #editarPaginas
+    width 100%
+    margin 7% 0 5% 
+    h3
+      text-align center
+
+    table#tablaEditarPaginas
+      width 80%
+      margin 5% 10% 5% 10%
+      text-align center
+      tr 
+        td
+          padding auto
+          height 40px 
+          text-align center  
+      td.columnaNumero      
+        width 3%
+      td.columnaTitulo
+        width 30%
+      td.columnaUsuario
+        width 16%
+      td.columnaFecha
+        width 20%
+      td.columnaAcciones
+        text-align left
+        width 30%
+      td.columnaAcciones.titulo 
+          text-align center    
+    #botones
+      text-align center
+      padding 2% 2% 2% 2%
+      #paginaNueva
+        margin-right 5%
+      #regresar
+        margin-left 5%     
+/*editar paginas*/
+        
+/*administrador*/
+  #admin
+    padding 4% 3% 4% 3%
+    border 2px solid gray
+    border-radius 10px
+    margin 7% 20% 0 20%
+    width 60%
+    text-align center
+    h3
+      text-align center
+      padding 2% 2% 2% 2%
+    button
+      margin 5% 5% 5% 5%
+/*fin administrador*/
+
+/*Pagina Interna*/
+  #linksPrincipales
+    width 100%
+    float left
+    text-align center
+    margin 2% 18% 2% 18%
+    div 
+      width 200px
+      float left
+      padding 5px 5px 5px 5px
+      a 
+        font-size 12px
+        color gray
+      a:hover
+        color #e58799
+        text-decoration none
+    #informacionCentros
+      border-left 2px solid gray
+      border-right 2px solid gray
+    #franquicias
+      border-right 2px solid gray
+  
+  #contenidoPagina
+    max-width 980px
+    width 100%
+    display block
+    box-sizing border-box
+    
+    margin 0 auto
+    padding-top 5%
+    
+    h1
+      width 100%
+      float left
+      text-align center
+      color #e58799
+      margin 2% 0 5% 0
+    
+    #imagenDescripcion
+      width 100%
+      text-align center
+      padding 3%
+      img 
+        padding 1.5%
+        width 80%
+        border 1px solid #e58799
+    
+    #elemento
+      width 80%
+      margin 5% 10% 5% 10%
+      text-align justify
+      font-family Arial !important
+      p 
+        color gray
+        font-family Arial !important
+    
+    #botonHacerDonacion
+      width 100%
+      text-align center
+      padding-top 3%
+      padding-bottom 2%
+      button 
+        background-color #e58799
+        width 30%
+        height 50px
+        b 
+          color white
+    
+    #fecha
+      float left
+      width 100%
+      #linea1
+        float left
+        border-top 1px solid #e58799
+        width 40%
+      #centro
+        width 16%
+        float left
+        margin -1.5% 2% 0 2%
+        padding 4px 4px 4px 4px
+        text-align center
+        span 
+          width 100%
+          color #e58799
+          text-align center
+      #linea3
+        float left
+        margin-bottom 1%
+        border-top 1px solid #e58799
+        width 20%
+      #linea2
+        float left
+        border-top 1px solid #e58799
+        width 40%
+    #descripcion
+      width 100%
+      margin 2% 0 2% 0
+      text-align center
+      border-bottom 1px solid #e58799
+      p 
+        text-align center
+        font-family Arial !important
+        color gray
+    #redesSociales
+      margin 3% 0 3% 0
+      padding 1% 1% 1% 1%
+      width 25%
+      float left
+      border 1px solid #e58799
+      .izquierda
+        margin-top 10px
+        float left
+        width 0
+        height 0
+        border-top 8px solid transparent
+        border-bottom 8px solid transparent
+        border-right 8px solid #aaa
+      .contador
+        float left
+        width 42px
+        height 25px
+        margin-top 5px
+        background #aaa
+        text-align center
+        b 
+          color white
+          font-size 20px
+          text-align center
+      #facebook
+        //width 20%
+        width 33%
+        float left
+        //border-right 2px solid gray
+        padding 1% 1% 0 1%
+        .icon 
+          float left
+          height 42px   
+          width 40px 
+          background-image url("/images/facebook.png") 
+          background-repeat no-repeat
+        .icon:hover 
+          cursor pointer
+          background-image url("/images/facebookHover.png")  
+          background-repeat no-repeat
+          float left
+          height 42px
+          width 40px
+          
+      #twitter
+        //width 20%
+        width 33%
+        float left
+        //border-right 2px solid gray
+        padding 1% 1% 0 1%
+        .icon 
+          float left
+          height 42px   
+          width 40px 
+          background-image url("/images/twitter.png") 
+          background-repeat no-repeat
+        .icon:hover 
+          cursor pointer
+          background-image url("/images/twitterHover.png")  
+          background-repeat no-repeat
+          float left
+          height 42px
+          width 40px    
+          
+      #correo
+        //width 20%
+        width 33%
+        float left
+        padding 2% 1% 0 1%
+        .icon 
+          float left
+          height 42px   
+          width 40px 
+          background-image url("/images/correo.png") 
+          background-repeat no-repeat
+        .icon:hover 
+          cursor pointer
+          background-image url("/images/correoHover.png")  
+          background-repeat no-repeat
+          float left
+          height 42px
+          width 40px
+
+  #botonSubir
+    margin 4% 15% 1% 0
+    width 10%
+    float right
+    text-align right
+    button
+      margin-right 8%
+      background gray
+      border none
+/*Fin Pagina Interna*/
+
+/*Editar Menu y Slider*/
+  .editarconaccordion
+    padding 3% 10% 0 10%
+    h1
+      text-align center
+    #nota 
+      width 100%
+      padding 3% 20%
+      text-align justify
+      h4
+        color gray
+      p 
+        color gray
+        width 100%
+    .accordion
+      text-align left
+      padding-top 2%
+    .panel.panel-primary
+      .panel-heading
+        height 40px 
+        h2
+          float left
+        h3.editar 
+          float right
+      .panel-body
+        .datosMenu
+          width 40%
+          float left
+          .numeroMenu 
+            padding 3% 3% 0 3%
+            float left
+            width 100%
+            span 
+              float left
+            input
+              float left
+              margin-left 15px
+              text-align center
+              width 20%
+          .tituloMenu 
+            width 100%
+            float left
+            padding 3% 3% 0 3%
+            span 
+              float left
+            input
+              float left
+              margin-left 15px
+              text-align center
+              width 70%
+          .colorMenu 
+            float left
+            padding 3% 3% 0 3%
+            width 100%
+            span 
+              float left
+            input
+              float left
+              margin-left 15px
+              width 70%
+          .seleccionUrl
+            width 100%
+            padding 3% 3% 0 3%
+            float left
+            span
+              margin-right 15px
+            input
+              margin-left 20px
+          .urlMenu
+            width 100%
+            float left
+            padding 3% 3% 0 3%
+            span
+              float left
+            input
+              text-align center
+              margin-left 20px
+              width 100%
+            select
+              width 100%
+              margin-left 20px
+              text-align center
+        .creadorMenu
+          float left
+          text-align center
+          padding 2% 3% 0 3%
+          width 20%
+          float left          
+        .acciones
+          float left
+          text-align center
+          padding 3% 1% 0 1%
+      .tituloSubmenu
+        width 100%
+        float left
+        text-align center
+      .table-responsive 
+        float left
+      table
+        width 100%
+        float left
+        tr td 
+          text-align center
+          input
+            width 100%
+            text-align center
+          select
+            width 100%
+            text-align center
+        tr 
+          th 
+            text-align center
+          th.titulo
+            width 29% 
+          th.url
+            width 29%
+          th.fecha
+            width 8%
+          th.Usuario
+            width 8%
+      .guardarMenu
+        padding 3px 0 10px 0
+        text-align center
+        width 100%
+              
+    .botones
+      text-align center
+      padding-top 3%
+      a 
+        text-decoration none
+        color #fff
+    
+  .datosSlider
+    width 100%
+    padding 2%
+    div
+      width 100%
+      padding 1%
+      input
+        width 100%
+    .imagenSlider
+      margin-left -11%
+  .guardarSlider
+    width 100%
+    text-align center
+    padding 1%
+    button
+      margin 1%
+      border-radius 2px  
+  .checkPublicado
+    span 
+      float left
+    label 
+      margin-top -1%
+      radio-buttons(#337ab7) 
+
+  .nuevo
+    .nuevoElemento
+      padding-top 3%
+      .panelNuevo          
+        .acciones
+          float right
+          padding-right 5%
+        .tablaNuevo
+          margin-bottom 2%
+          width 100%
+          float left
+          #numero 
+            width 3%
+          #titulo 
+            width 40%
+            input
+              text-align center
+          #checkbox
+            width 7%
+          #url 
+            width 40%
+            input
+              text-align center
+          #acciones 
+            width 10%              
+/*Fin Editar Menu*/
+
+/*Selector de imagen*/
+  .btn-file input[type="file"] 
+      position absolute
+      top 0
+      right 0
+      min-width 100%
+      min-height 100%
+      opacity 0
+      background red
+      cursor inherit
+      display block
+
+  input[readonly] 
+      background-color white !important
+      cursor text !important
+
+  .input-group
+      margin-left 10%
+      margin-right 10%
+      width 95%
+/*fin selector de imagen*/
+
+/*Usuario nuevo*/
+  #usuarioNuevo
+    width 100%
+    padding 3% 10%
+    h1
+      text-align center
+      width 100%
+      color #ff889b
+    #formulario
+      padding-top 5%
+      width 50%
+      margin auto
+      input::-webkit-input-placeholder
+        color #ccc
+      input:-moz-placeholder 
+        color #ccc
+      input::-moz-placeholder 
+        color #ccc
+      input:-ms-input-placeholder 
+        color #ccc
+      input
+        width 70%
+        margin 2% 15%
+        height 30px
+        border-left none
+        border-top none
+        border-right none
+        border-bottom 1.8px solid #ff889b
+        text-align center
+      button
+        width 70%
+        margin 2% 15%
+        border 1.8px solid #ff889b
+        text-align center
+        color white
+        background-color #ff889b
+        height 25px
+        padding-top 3px
+/*fin Usuario nuevo*/
+
+/*todoContenido*/
+  #todoContenido
+    width 100%
+    padding 5% 5% 5% 5%
+    h1
+      width 100%
+      text-align center
+      color #5f5f5f
+      padding-bottom 3%
+      border-bottom 1px solid #5f5f5f
+    div     
+      p 
+        text-align justify
+/*fin todoContenido*/
+
+/*Hacer Donación*/
+  #paginaDonacion
+    width 100%
+    padding 3% 10%
+    h1
+      text-align center
+      width 100%
+      color #ff889b
+    #formulario
+      padding-top 5%
+      width 70%
+      margin auto
+      color-placeholder-input(#aaa)
+      input
+        width 70%
+        margin 2% 15%
+        height 30px
+        border-left none
+        border-top none
+        border-right none
+        border-bottom 1.8px solid #ff889b
+        text-align center
+      textarea
+        width 70%
+        margin 2% 15%
+        border 1.8px solid #ff889b
+        text-align center
+      color-placeholder-textarea(#aaa)
+      button
+        width 70%
+        margin 2% 15%
+        border 1.8px solid #ff889b
+        text-align center
+        color white
+        background-color #ff889b
+        height 25px
+        padding-top 3px
+      span
+        width 70%
+        padding-left 21%
+        padding-top 3%
+        color #696363
+        margin 2% 15%
+      #opciones
+        width 70%
+        margin 2% 15%
+        padding 1% 0 5% 0
+        #tiempo
+          width 33%
+          padding-left 7%
+          float left
+        #especie
+          padding-left 7%
+          width 33%
+          float left
+        #dinero
+          width 33%
+          float left
+          padding-left 10%
+        span 
+          float left
+          margin 0 !important
+          width auto !important
+          padding-left 1% !important
+        .checkboxDonacion 
+          radio-buttons(#ff889b)
+    #confirmacion
+      display none
+      width 80%
+      padding 3% 5%
+      margin auto
+      h4
+        text-align center
+        width 100%
+        color #ff889b
+      #datosDonacion
+        text-align center
+        width 80%
+        margin auto
+        border 1.5px solid #ff889b
+        padding 6% 5%
+        min-height 350px
+        overflow-y overlay
+        .rosado
+          color #ff889b
+          float left
+          min-width 180px
+          padding 2%
+        .gris
+          color #696363
+          float left
+          width 320px
+          overflow-x hidden
+          border-bottom: 1px solid rgb(221, 210, 210);
+          padding 2%
+      button
+        width 50%
+        margin 2.5% 25%
+        border 1.8px solid #ff889b
+        text-align center
+        color white
+        background-color #ff889b
+        height 25px
+        padding-top 3px
+/*fin hacer donación*/
+
+/*Contacto*/
+  #contacto 
+    width 100%
+    padding 3% 10%
+    h1
+      text-align center
+      width 100%
+      color #ff889b
+    p 
+      border-top 1.8px solid #ff889b
+      border-bottom 1.8px solid #ff889b
+      width 100%
+      padding 3% 5%
+      text-align center
+      color #696363
+    #formulario
+      padding-top 5%
+      width 50%
+      margin auto
+      input::-webkit-input-placeholder
+        color #ccc
+      input:-moz-placeholder 
+        color #ccc
+      input::-moz-placeholder 
+        color #ccc
+      input:-ms-input-placeholder 
+        color #ccc
+      input
+        width 70%
+        margin 2% 15%
+        height 30px
+        border-left none
+        border-top none
+        border-right none
+        border-bottom 1.8px solid #ff889b
+        text-align center
+      textarea
+        width 70%
+        margin 2% 15%
+        border 1.8px solid #ff889b
+        text-align center
+      textarea::-webkit-input-placeholder
+        color #ccc
+      textarea:-moz-placeholder 
+        color #ccc
+      textarea::-moz-placeholder 
+        color #ccc
+      textarea:-ms-input-placeholder 
+        color #ccc
+      button
+        width 70%
+        margin 2% 15%
+        border 1.8px solid #ff889b
+        text-align center
+        color white
+        background-color #ff889b
+        height 25px
+        padding-top 3px
+/*fin contacto*/
+
+/*Estrellas*/
+  #paginaEstrellas
+    width 100%
+    padding 3% 10%
+    h1
+      text-align center
+      width 100%
+      color #36abd0
+    #formulario
+      padding 5% 0
+      width 50%
+      margin auto
+      #titulo
+        width 100%
+        padding 1% 0
+        h3 
+          color #36abd0
+          text-align center
+          padding-bottom 2%
+        p 
+          text-align center
+          color #696363
+          margin-top -2%
+      #numEstrellas
+        padding 1% 0
+        width 65%
+        margin auto
+        span
+          float left
+          color #696363
+          padding-top 1%
+        input
+          margin-left 2%
+          width 80px
+          float left
+          height 30px
+          border 1.8px solid #36abd0
+          text-align center
+          color #696363
+      #dinero
+        padding 7% 2%
+        width 80%
+        margin auto
+        #spanValor
+          float left
+          color #696363
+          padding-top 1%
+        #signoPesos
+          float left
+          color #36abd0
+          font-size 20px
+        #valorEstrellas
+          float left
+          border none
+          width 100px
+          color #36abd0
+          font-size 20px
+      button
+        width 90%
+        margin 2% 5%
+        border 1.8px solid #36abd0
+        color white
+        background-color #36abd0
+        height 25px
+        padding-top 3px
+      #terminos
+        width 100%
+        padding-top 2%
+        padding-left 5%
+        span 
+          color #696363
+        a 
+          color #696363
+    #confirmacionEstrellas
+      display none
+      width 80%
+      padding 3% 5%
+      margin auto
+      h4
+        text-align center
+        width 100%
+        color #36abd0
+      #datosEstrellas
+        text-align center
+        width 80%
+        margin auto
+        border 1.5px solid #36abd0
+        padding 6% 5%
+        overflow-y overlay
+        .azul
+          color #36abd0
+          min-width 180px
+          padding 2%
+        .gris
+          color #696363
+          width 200px
+          overflow-x hidden
+          padding 2%
+      button
+        width 50%
+        margin 2.5% 25%
+        border 1.8px solid #36abd0
+        text-align center
+        color white
+        background-color #36abd0
+        height 25px
+        padding-top 3px
+/*fin estrellas*/
+
+/*Recuperar Contraseña*/
+  #recuperar
+    width 100%
+    padding 3% 10%
+    h1
+      text-align center
+      width 100%
+      color #ff889b
+    #formulario
+      padding-top 5%
+      width 70%
+      margin auto
+      color-placeholder-input(#aaa)
+      input
+        width 70%
+        margin 2% 15%
+        height 30px
+        border-left none
+        border-top none
+        border-right none
+        border-bottom 1.8px solid #ff889b
+        text-align center
+      button
+        width 70%
+        margin 2% 15%
+        border 1.8px solid #ff889b
+        text-align center
+        color white
+        background-color #ff889b
+        height 25px
+        padding-top 3px
+      span
+        width 70%
+        padding-left 15%
+        padding-top 3%
+        color #696363
+      #opciones
+        width 70%
+        margin 2% 15%
+        padding 1% 0 5% 0
+        .div
+          width 50%
+          padding-left 7%
+          float left
+        span 
+          float left
+          width auto 
+          padding-left 1%
+          padding-top 6%
+        .checkbox 
+          radio-buttons(#ff889b)
+/*Fin recuperar contraseña*/
+
+/*Responsive*/
+  @media (max-width:800px)
+    body 
+      overflow-x hidden
+    /*Layout*/
+    .navbar
+    .navbar
+      position inherit
+      .container-fluid #navbar-collapse-1
+        width 100%
+        max-width 100%
+        padding-left 2%
+        #botonDonar
+          width 100px !important
+        ul#ulPrincipal
+          margin-left 0 !important
+        ul.nav.navbar-nav
+          width 100%
+          margin 20px auto
+          ul.submenus.dropdown-menu.colorSubmenu
+            margin 0 !important
+        #botonIngresar.nav.navbar-nav.navbar-right
+          border-left none
+          text-align center
+          padding 0
+          #login
+            width 250px    
+            padding 1% 0 0 0  
+    header 
+      display none
+    #contenido
+      padding-top 8%
+    #piePagina
+      height initial
+      a
+        display block
+      span.guion
+        display none
+    /*Fin Layout*/
+    /*Home*/
+    #slider
+      #sliderImagenes
+        iframe 
+          height 250px
+        #flechaAbajo
+          display none
+    #seccionesPrincipales #cards .card
+      margin 15% 2%
+      width 96%
+      display block
+      box-sizing border-box
+
+    #masContenido
+      #linea1
+        display none
+      a
+        width 50%
+      #linea2
+        padding 0 0 1% 0
+        border-top none
+        width 40%
+    /*Fin Home*/
+    /*Pagina Interna*/
+    #imagenDescripcion
+      padding 0
+      img 
+        width 90%
+    #elemento
+      width 90% !important
+      p 
+        max-width 90% !important
+      span
+        max-width 90% !important
+      img 
+        max-width 90% !important
+        max-height 35% !important
+    #fecha
+      #linea1
+        width 30% !important
+      #centro
+        width 36% !important
+      #linea2
+        width 30% !important
+    /*Fin Pagina Interna*/
+    /*Contacto*/
+    #contacto 
+      padding 3%
+      #formulario
+        width 80%
+    /*Fin Contacto*/
+    /*Hacer Donacion*/
+    #paginaDonacion
+      padding 3%
+      h1
+        font-size 30px
+      #formulario
+        width 100%
+        span
+          padding-left 10%
+      #confirmacion
+        width 90%
+    /*Fin Hacer Donacion*/
+    /*Estrellas*/
+    #paginaEstrellas
+      padding 3%
+      h1
+        font-size 30px
+      #formulario
+        width 80%
+        #numEstrellas
+          width 90%
+          margin none
+        #dinero
+          width 90%
+          margin none
+    /*Fin Estrellas*/
+    #editarPaginas
+      table#tablaEditarPaginas
+        margin auto
+    .panel.panel-primary
+      .panel-body
+        .datosMenu
+          width 100% !important
+        .creadorMenu
+          width 100% !important
+        .acciones
+          width 100% !important
+          span 
+            display none
+          a 
+            min-width 100% !important
+            float left
+      .table-responsive
+        table
+          tr 
+            td 
+              input[type="text"] 
+                width 200px !important
+              select
+                width 200px !important
+              

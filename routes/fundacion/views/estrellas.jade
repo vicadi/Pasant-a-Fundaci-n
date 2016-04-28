@@ -1,0 +1,43 @@
+extends ../../../views/layout
+block content
+  #paginaEstrellas
+    h1 COMPRAR ESTRELLAS 
+    #formulario
+      form(method="POST" action="/estrellas")
+        #titulo
+          h3 ESTRELLAS 
+          P UNA ESTRELLA EQUIVALE A UN APORTE DE $30.000 PESOS MENSUALES
+          P DESCONTABLES AUTOMÁTICAMENTE DE TU TARJETA DE CRÉDITO O DÉBITO.
+        #numEstrellas
+          span ¿CUÁNTAS ESTRELLAS QUIERES?
+          input#estrellas(type="text" name="estrellas" required autofocus)
+        #dinero
+          span#spanValor CONFIRMAR DONACIÓN EN DINERO &nbsp;&nbsp;
+          span#signoPesos 
+            b $&nbsp;&nbsp; 
+          input#valorEstrellas(type="text" name="valorEstrellas" value="000000" readonly) 
+        button.btn(type="submit")
+            b Mobile Card
+        #terminos
+          span VER 
+          a(href="/terminosCondicionesEstrellas")
+            b TÉRMINOS Y CONDICIONES
+    #confirmacionEstrellas
+      if datosDonacion
+        script(type="text/javascript").
+          vistaEstrellas=true;
+        if datosEncryptados
+          form#formConfirmacion(method="POST" action="https://prod.mobilecard.com.co/AddcelColombiaWeb/login")
+            input(type="hidden" name="json" value=datosEncryptados.json)
+            input(type="hidden" name="comercio" value=datosEncryptados.comercio)
+            h4 Estos son los datos que ingresaste - ¿Deseas Continuar?
+            #datosEstrellas
+              span.azul NÚMERO ESTRELLAS MENSUALES: 
+              span.gris &nbsp; #{datosDonacion.estrellas}
+              br
+              span.azul VALOR DE ESTRELLAS: 
+              span.gris &nbsp; #{datosDonacion.valorEstrellas}
+            button#bDinero.btn(type="submit")
+              b SI             
+            button.btn(type="button" onclick="location.href='/estrellas'")
+              b NO 

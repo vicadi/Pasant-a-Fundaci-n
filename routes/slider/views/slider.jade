@@ -1,0 +1,22 @@
+if sliders.length!=0
+  ul#sb-slider.sb-slider
+    each slider,index in sliders
+      li
+        img(src=slider.linkImagen alt="image"+(index+1))
+        if slider.descripcion
+          .sb-description
+            h3 #{slider.descripcion}
+            if slider.enlace!="none"
+              .leermasSlider
+                a(href=slider.enlace)
+                  b LEER +
+        else if slider.enlace!="none"
+          .sb-description
+            .leermasSlider
+              a(href=slider.enlace)
+                b LEER +
+  #nav-arrows.nav-arrows
+    a.flecha(href="#") Next
+    a.flecha(href="#") Previous
+else
+  iframe(allowfullscreen frameborder="0" src="//www.youtube-nocookie.com/embed/FzavTpMZelU?autoplay=1&?fs=1&hd=1&rel=0&showsearch=0&showinfo=0&iv_load_policy=3&loop=1&theme=light&modestbranding=1&autohide=1" style="width: 100%;")

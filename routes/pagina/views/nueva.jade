@@ -1,0 +1,65 @@
+extends ../../../views/layout
+block head
+  script(type='text/javascript' src='/plugins/ckeditor/ckeditor.js')
+block content
+  if user && user.rol == "administrador"
+    #pagina
+      h3 PAGINA NUEVA 
+      form(method="POST" enctype='multipart/form-data' action="")
+        table#tablaCampos
+          tr
+           td.columnaPequena
+              p Título
+           td.columnaGrande
+              input(type="text" name="titulo" required title="Titulo requerido")
+          tr 
+           td.columnaPequena
+              p Enlace
+           td.columnaGrande
+              input(type="text" name="nombreEnlace" required title="Enlace requerido")
+          tr 
+            td.columnaPequena
+              p Enlace Video
+            td.columnaGrande
+              input.enlaceVideo(type="text" placeholder="Ejemplo   https://www.youtube.com/watch?v=-Dc_kzFd1lw")
+              input.idVideo(type="hidden" name="idVideo")
+          tr
+            td.columnaPequena
+              p Imagen Descripción
+            td.columnaGrande
+              .input-group
+                span.input-group-btn
+                  span.btn.btn-primary.btn-file
+                      span Seleccione una imagen&hellip; 
+                        input(type="file" name="image")
+                input.form-control(type="text" readonly)
+          tr
+            td.columnaPequena
+              p Descripción (Max 300 caracteres)
+            td.columnaGrande
+              textarea(name="descripcion" maxlength="300" required title="Descripción requerida")
+          tr 
+            td.columnaPequena
+              p Categoría
+            td.columnaGrande
+              select.form-control(name="categoria")
+                option(value="sinCategoria" selected) Sin categoría
+                option(value="fisico") Fisico
+                option(value="emocional") Emocional
+                option(value="espiritual") Espiritual              
+          tr
+           td.columnaPequena
+              p Contenido
+           td.columnaGrande
+              textarea(name="contenido" id="textContenido" class="ckeditor")
+        table#tablaBotones
+          tr
+           td#guardar
+              button.btn.btn-primary(type="submit" onclick="this.form.action='/admin/pagina/guardar'") Guardar 
+           td#publicar 
+              button.btn.btn-primary(type="submit" onclick="this.form.action='/admin/pagina/publicar'")  Publicar
+           td#regresar 
+              button.btn.btn-primary(type="button" onclick="location.href='/admin/editarpaginas'") regresar
+  else
+     #noAdmin 
+      h1 ¡No eres administrador! 

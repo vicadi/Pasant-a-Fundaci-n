@@ -1,0 +1,13 @@
+extends ../../../views/layout
+block content
+  #contacto
+    h1 CONTÁCTANOS 
+    #formulario
+      form(name="formContacto" method="POST" action="/enviarContacto")
+        input(type="text" name="nombre" placeholder="NOMBRE" required)
+        input(type="text" name="apellido" placeholder="APELLIDO" required)           
+        input(type="text" name="telefono" placeholder="TELEFONO")
+        input(type="email" name="email" placeholder="CORREO ELECTRONICO" required)
+        textarea.form-control(rows="5" name="comentario" placeholder="COMENTARIO")
+        button.btn(type="submit")
+          b OK 

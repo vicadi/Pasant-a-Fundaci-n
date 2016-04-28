@@ -1,0 +1,66 @@
+extends ../../../views/layout
+block content
+  if user && user.rol == "administrador"
+    #editarPaginas
+      h3 EDITAR PAGINAS 
+      table#tablaEditarPaginas.table
+        tr.info
+          td.columnaNumero 
+            b #
+          td.columnaTitulo
+            b Título Página
+          td.columnaUsuario
+            b Modificador
+          td.columnaFecha
+            b Fecha Modificación 
+          td.columnaAcciones.titulo
+            b Acciones 
+        each pagina, index in pagsAdmin
+          if index%2==0
+            tr.active
+              td.columnaNumero 
+                span=index+1
+              td.columnaTitulo
+                span 
+                  a(href="/"+pagina.nombreEnlace target="_blank") #{pagina.titulo}
+              td.columnaUsuario
+                span #{pagina.UserModificacion}
+              td.columnaFecha
+                span #{pagina.fechaCreacion}
+              td.columnaAcciones
+                a(href="/admin/pagina/editar/"+pagina.nombreEnlace) Editar 
+                span &nbsp; | &nbsp;
+                a.eliminarPagina(href="javascript:void(0);" enlace=pagina.nombreEnlace pagina=pagina.titulo) Eliminar
+                span &nbsp; | &nbsp;
+                if pagina.publicar
+                  a(href="/admin/pagina/cambiarEstado/"+pagina.nombreEnlace) Dejar de publicar
+                else
+                  a(href="/admin/pagina/cambiarEstado/"+pagina.nombreEnlace) Publicar
+                span &nbsp;  
+          else
+            tr.success
+              td.columnaNumero 
+                span=index+1
+              td.columnaTitulo
+                span 
+                  a(href="/"+pagina.nombreEnlace target="_blank") #{pagina.titulo}
+              td.columnaUsuario
+                span #{pagina.UserModificacion}
+              td.columnaFecha
+                span #{pagina.fechaCreacion}
+              td.columnaAcciones
+                a(href="/admin/pagina/editar/"+pagina.nombreEnlace) Editar 
+                span &nbsp; | &nbsp;
+                a.eliminarPagina(href="javascript:void(0);" enlace=pagina.nombreEnlace pagina=pagina.titulo) Eliminar
+                span &nbsp; | &nbsp;
+                if pagina.publicar
+                  a(href="/admin/pagina/cambiarEstado/"+pagina.nombreEnlace) Dejar de publicar
+                else
+                  a(href="/admin/pagina/cambiarEstado/"+pagina.nombreEnlace) Publicar
+                span &nbsp; 
+      #botones
+        button#paginaNueva.btn.btn-primary(onclick="location.href='/admin/pagina/nueva'") Pagina Nueva
+        button#regresar.btn.btn-primary(onclick="location.href='/admin'") Regresar
+  else
+    #noAdmin 
+      h1 ¡No eres administrador!  

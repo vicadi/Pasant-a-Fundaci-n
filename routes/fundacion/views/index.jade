@@ -1,0 +1,42 @@
+extends ../../../views/layout
+block head 
+  link(rel='stylesheet' type='text/css' href='/plugins/Slicebox/css/slicebox.css')
+  link(rel='stylesheet' type='text/css' href='/css/shadowbox.css')
+  script(type='text/javascript' src='/plugins/Slicebox/js/modernizr.custom.46884.js')
+  script(type='text/javascript' src='/plugins/Slicebox/js/jquery.slicebox.js') 
+  script(type='text/javascript' src='/js/scroll.js')
+  script(type='text/javascript' src='/js/shadowbox.js')
+  script(type="text/javascript").
+    Shadowbox.init();
+block content
+  script(type="text/javascript").
+    ultimasEntradas=!{JSON.stringify(ultimasEntradas)}; 
+    ultimasEntradasPrimarias=!{JSON.stringify(ultimasEntradasPrimarias)}; 
+  #slider 
+    #sliderImagenes.wrapper
+      include ../../slider/views/slider 
+
+      #flechaAbajo
+        a.scrolldown(href="javascript:void(0);")
+          img(src="/images/flechaAbajo.svg")
+          img#img2(src="images/flechaAbajo.svg")
+      
+  #seccionesPrincipales
+    #cards
+      #cardVideo.card
+        p ¡Entérate!
+        img(src="/images/1.png" style="width:100%")
+      a(href="/estrellas")
+        #cardDonar.card
+          p
+            b AYUDANOS A AYUDAR
+          img(src="/images/logoSoloBlanco.png")
+  #agregarContenidoScroll
+        
+  #masContenido
+    #linea1
+    a(href="/todocontenido") 
+      #centro MAS CONTENIDO +
+    #linea2
+      button.btn.btn-primary.scrollup(type="button") 
+       b SUBIR

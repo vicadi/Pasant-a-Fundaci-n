@@ -1,0 +1,104 @@
+extends ../../../views/layout
+block content
+  if user && user.rol == "administrador"
+    #editarSlider.editarconaccordion
+      h1 EDITAR SLIDER
+      #accordionSlider.panel-group.accordion
+        - var contador = 0
+        if sliders 
+          each s in sliders
+            .panel.panel-primary(id="panelSlider"+contador)
+              .panel-heading(id="tituloSlider"+contador)
+                if s.publicado
+                  h2.panel-title #{s.titulo} &nbsp;&nbsp; - &nbsp;&nbsp; Publicado
+                else
+                  h2.panel-title #{s.titulo}
+                h3.editar.panel-title 
+                  a.aEditar.accordion-toggle(id="aEditar"+contador panel="panelCollapseSlider"+contador data-toggle="collapse" data-parent="#accordionSlider" href="#panelCollapseSlider"+contador)
+              .panel-collapse.collapse(id="panelCollapseSlider"+contador)
+                form(id="formEditarSlider"+contador method="POST" enctype='multipart/form-data' action="/admin/slider/editar")
+                  input(type="hidden" name="tituloSliderOriginal" value=s.titulo)
+                  .panel-body
+                    .datosSlider
+                      .tituloSlider 
+                        span Titulo 
+                        input.form-control(type="text" name="titulo" value=s.titulo required title="Título requerido")
+                      .descripcionSlider
+                        span Descripción
+                        input.form-control(type="text" name="descripcion" title="Descripción requerida" value=s.descripcion) 
+                      .enlaceSlider
+                        select#enlace.form-control(name="enlace")
+                          option(value="none") Seleccione una opción
+                          if paginas
+                            each pagina in paginas
+                              if pagina.nombreEnlace==s.enlace
+                                option(value=pagina.nombreEnlace selected) #{pagina.titulo}
+                              else 
+                                option(value=pagina.nombreEnlace) #{pagina.titulo}
+                      .imagenSlider
+                        .input-group
+                          span.input-group-btn
+                            span.btn.btn-primary.btn-file
+                                span Seleccione una imagen&hellip; 
+                                  input(type="file" name="image")
+                          input.form-control(type="text" readonly name="imagenAnterior" value=s.linkImagen)
+                      .checkPublicado
+                        label.checkbox
+                          if s.publicado
+                            input(type="checkbox" name="publicado" checked)
+                          else
+                            input(type="checkbox" name="publicado")
+                          span
+                        span  &nbsp; PUBLICADO
+                  .guardarSlider
+                    button.botonSlider.btn.btn-primary.btn-sm(type="submit" tabla="tablaSlider"+contador) Guardar Cambios
+                    button.botonEliminarSlider.btn.btn-primary.btn-sm(type="button" enlace="/admin/slider/eliminar/"+s.titulo slider=s.titulo) Eliminar Slider
+            -contador++
+        else 
+          h1 No hay slider
+
+      .botones
+        button#agregarSlider.btn.btn-primary(type="button") Agregar Slider 
+        span &nbsp; &nbsp; &nbsp;
+        button.btn.btn-primary(type="button" onclick="location.href='/admin'") Regresar 
+
+      .nuevo
+        #sliderNuevo.nuevoElemento(style="display:none")
+          form#formSliderNuevo(method="POST" enctype='multipart/form-data' action="/admin/slider/nuevo")
+            #panelSliderNuevo.panel.panel-primary.panelNuevo
+              .panel-heading
+                h2.panel-title SLIDER NUEVO 
+              .panel-collapse
+                .panel-body
+                  .datosSlider
+                    .tituloSlider 
+                      span Titulo:&nbsp;&nbsp;
+                      input.form-control(type="text" name="titulo" required title="Título requerido")
+                    .descripcionSlider
+                      span Descripción: &nbsp;&nbsp;
+                      input.form-control(type="text" name="descripcion" title="Descripción requerida") 
+                    .enlaceSlider
+                      span Enlace:&nbsp;&nbsp;
+                      select#enlace.form-control(name="enlace")
+                        option(value="none") Seleccione una opción
+                        if paginas
+                          each pagina in paginas
+                            option(value=pagina.nombreEnlace) #{pagina.titulo}
+                    .imagenSlider
+                      .input-group
+                        span.input-group-btn
+                          span.btn.btn-primary.btn-file
+                              span Seleccione una imagen&hellip; 
+                                input(type="file" name="image" required)
+                        input.form-control(type="text" readonly)
+                    .checkPublicado
+                      span  Publicado: &nbsp; &nbsp; &nbsp; 
+                      label.checkbox
+                        input(type="checkbox" name="publicado")
+                        span
+                .guardarSlider
+                  button#botonSlider.btn.btn-primary.btn-sm(type="submit" tabla="tablaSliderNuevo") Guardar Slider
+                  button#cancelarNuevo.btb.btn-primary.btn-sm(type="button") Cancelar
+  else
+    #noAdmin 
+      h1 ¡No eres administrador!  

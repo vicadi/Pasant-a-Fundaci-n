@@ -1,0 +1,234 @@
+extends ../../../views/layout
+block content
+  script(type="text/javascript").
+    paginas=!{JSON.stringify(paginas)};
+  if user && user.rol == "administrador"
+    #editarMenu.editarconaccordion
+      h1 EDITAR MENU
+      #nota
+        h4 NOTA 
+        p Se recomienda asignar el orden de cada menú con un número que no este asignado, si el que desea ya esta asignado primero libere la posición editando el menú que contiene el número requerido y después si asigne su posición. 
+      #accordion.panel-group.accordion
+        - var contador = 0
+        each menu in menus
+          .panel.panel-primary(id="panel"+contador)
+            .panel-heading(id="titulo"+contador)
+              h2.panel-title #{menu.posicion}- &nbsp;&nbsp; #{menu.titulo}
+              h3.editar.panel-title 
+                a.aEditar.accordion-toggle(titulo="titulo"+contador data-toggle="collapse" data-parent="#accordion" href="#panelCollapse"+contador) Editar 
+            .panel-collapse.collapse(id="panelCollapse"+contador)
+              form(id="formEditarMenu"+contador method="POST" action="/admin/menu/editar")
+                input(type="hidden" name="tituloMenuOriginal" value=menu.titulo)
+                .panel-body
+                  .datosMenu
+                    .numeroMenu
+                        span Orden en el Menu  
+                        input(type="number" name="numeroMenu" min=0 required title="Número requerido" value=menu.posicion)
+                    .tituloMenu 
+                      span Titulo 
+                      input(type="text" name="tituloMenu" value=menu.titulo required title="Título requerido")
+                    .colorMenu
+                        span Color
+                        input(type="color" name="colorMenu" required title="Color requerido" value=menu.color)
+                    if menu.submenus==""
+                      .seleccionUrl
+                        span ¿Url interna?                        
+                        if menu.urlExterna!=""
+                          input#seleccionUrl(type="checkbox" name="seleccionUrl")
+                        else
+                          input#seleccionUrl(type="checkbox" checked name="seleccionUrl")
+                      .urlMenu 
+                        span Url 
+                          if menu.urlExterna
+                            input#urlExterna(type="url" placeholder="http://www.ejemplo.com" value=menu.urlExterna name="urlExterna")
+                            select#urlInterna.form-control(name="urlInterna" style="display:none")
+                              option(value="none") Seleccione una opción
+                              each pagina in paginas
+                                option(value=pagina.nombreEnlace) #{pagina.titulo}
+                          else
+                            input#urlExterna(type="url" placeholder="http://www.ejemplo.com" name="urlExterna" style="display:none")
+                            select#urlInterna.form-control(name="urlInterna")
+                              option(value="none") Seleccione una opción
+                              each pagina in paginas
+                                if pagina.nombreEnlace==menu.urlInterna
+                                 option(value=pagina.nombreEnlace selected) #{pagina.titulo}
+                                else 
+                                 option(value=pagina.nombreEnlace) #{pagina.titulo} 
+                    else 
+                      .seleccionUrl(style="display:none")
+                        span ¿Url interna?      
+                          input#seleccionUrl(type="checkbox" name="seleccionUrl")
+                      .urlMenu(style="display:none")
+                        span Url 
+                            input#urlExterna(type="url" placeholder="http://www.ejemplo.com" name="urlExterna")
+                            select#urlInterna.form-control(name="urlInterna" style="display:none")
+                              option(value="none") Seleccione una opción
+                              each pagina in paginas
+                                option(value=pagina.nombreEnlace) #{pagina.titulo}
+                  .creadorMenu
+                    span Usuario: #{menu.UserModificacion}
+                    br
+                    span Fecha: #{menu.fechaCreacion}
+                  .acciones
+                    a.agregarSubmenu(href="javascript:void(0);" tabla="tabla"+contador panel="panel"+contador) Agregar Submenu 
+                    span &nbsp; | &nbsp;
+                    a.eliminarMenu(href="javascript:void(0);" enlace="/admin/menu/eliminar/"+menu.titulo menu=menu.titulo) Eliminar Menu
+                    span &nbsp; | &nbsp;
+                    a.aCancelar(href="javascript:void(0);" panel="panel"+contador titulo="titulo"+contador panelCollapse="panelCollapse"+contador) Cancelar Edición
+                if menu.submenus==""
+                  .tituloSubmenu(style="display:none")
+                    h3 SUBMENU
+                  .table-responsive
+                    table.table(id="tabla"+contador style="display:none")
+                      thead
+                        tr
+                          th.numero 
+                            h5 
+                              b #
+                          th.titulo 
+                            h5
+                              b Titulo 
+                          th.check
+                            h5 
+                              b ¿Url Interna?
+                          th.url 
+                            h5
+                              b Url 
+                          th.fecha  
+                            h5
+                              b Fecha Modificación
+                          th.usuario 
+                            h5
+                              b Usuario
+                          th.accion 
+                            h5
+                              b Acción
+                      tbody
+                else
+                  .tituloSubmenu
+                    h3 SUBMENU
+                  .table-responsive
+                    table.table(id="tabla"+contador)
+                      thead
+                        tr
+                          th.numero 
+                            h5 
+                              b #
+                          th.titulo 
+                            h5
+                              b Titulo 
+                          th.check
+                            h5 
+                              b ¿Url Interna?
+                          th.url 
+                            h5
+                              b Url 
+                          th.fecha  
+                            h5
+                              b Fecha Modificación
+                          th.usuario 
+                            h5
+                              b Usuario
+                          th.accion 
+                            h5
+                              b Acción
+                      tbody
+                        each submenu, index in menu.submenus
+                          tr.dato(id=index) 
+                            td=index+1
+                            td 
+                              input(type="text" name="tituloSubmenu["+index+"]" value=submenu.titulo required title="Titulo de submenu requerido")
+                            td 
+                              if submenu.urlExterna
+                                input.seleccionUrlSubmenu(type="checkbox" name="seleccionUrl" interna="urlInternaSubmenu"+index externa="urlExternaSubmenu"+index)
+                              else 
+                                input.seleccionUrlSubmenu(type="checkbox" checked name="seleccionUrl" interna="urlInternaSubmenu"+index externa="urlExternaSubmenu"+index)                         
+                            td  
+                              if submenu.urlExterna
+                                input(type="url" id="urlExternaSubmenu"+index value=submenu.urlExterna name="urlExternaSubmenu["+index+"]" placeholder="http://www.ejemplo.com") 
+                                select.form-control(style="display:none" id="urlInternaSubmenu"+index name="urlInternaSubmenu["+index+"]")
+                                  option(value="none") Seleccione una opción
+                                  each pagina in paginas
+                                    option(value=pagina.nombreEnlace) #{pagina.titulo}
+                              else if submenu.urlInterna
+                                input(style="display:none" type="url" id="urlExternaSubmenu"+index name="urlExternaSubmenu["+index+"]" placeholder="http://www.ejemplo.com")
+                                select.form-control(id="urlInternaSubmenu"+index name="urlInternaSubmenu["+index+"]")
+                                  option(value="none") Seleccione una opción
+                                  each pagina in paginas
+                                    if submenu.urlInterna == pagina.nombreEnlace
+                                      option(value=pagina.nombreEnlace selected) #{pagina.titulo}
+                                    else 
+                                      option(value=pagina.nombreEnlace) #{pagina.titulo}
+                            td 
+                              span #{menu.fechaCreacion}
+                            td 
+                              span #{menu.UserModificacion}
+                            td  
+                              a.eliminarSubmenu(href="javascript:void(0);" onclick="cancelar_eliminarSubmenu("+index+", 'panel"+contador+"','Eliminar')") Eliminar      
+                .guardarMenu
+                  button.botonSubmenu.btn.btn-primary.btn-sm(type="submit" tabla="tabla"+contador) Guardar Cambios
+          -contador++
+
+      .botones
+        button#agregarMenu.btn.btn-primary(type="button") Agregar Menu 
+        span &nbsp; &nbsp; &nbsp;
+        button.btn.btn-primary(type="button" onclick="location.href='/admin'") Regresar 
+
+      #nuevoMenu.nuevo
+        #menuNuevo.nuevoElemento(style="display:none; float:left; width:100%")
+          form#formMenuNuevo(method="POST" action="/admin/menu/nuevo")
+            #panelMenuNuevo.panel.panel-primary.panelNuevo
+                .panel-heading
+                  h2.panel-title MENU NUEVO 
+                .panel-collapse
+                    .panel-body
+                      .datosMenu
+                        .numeroMenu
+                          span Orden en el Menu  
+                          input(type="number" name="numeroMenu" min=0 required title="Número requerido" value=(menus.length+1))
+                        .tituloMenu
+                          span Titulo 
+                          input(type="text" name="tituloMenu" required title="Titulo requerido")
+                        .colorMenu
+                          span Color
+                          input(type="color" name="colorMenu" required title="Color requerido")
+                        .seleccionUrl
+                          span ¿Url interna?
+                          input#seleccionUrl(type="checkbox")
+                        .urlMenu
+                          span Url 
+                          br 
+                          input#urlExterna(type="url" placeholder="http://www.ejemplo.com" name="urlExterna")
+                          select#urlInterna.form-control(style="display:none" name="urlInterna")
+                            option(value="none" selected) Seleccione una opción
+                            each pagina in paginas
+                              option(value=pagina.nombreEnlace) #{pagina.titulo}
+                      .acciones
+                        a#agregarSubmenuMenuNuevo(href="javascript:void(0);" tabla="tablaMenuNuevo" panel="panelMenuNuevo") Agregar Submenu 
+                        span &nbsp; | &nbsp;
+                        a#aCancelar(href="javascript:void(0);") Cancelar
+                    .tituloSubmenu(style="display:none")
+                      h3 SUBMENU
+                    .table-responsive
+                      table#tablaMenuNuevo.tablaNuevo.table(style="display:none")
+                        tr
+                          th#numero 
+                            h5 
+                              b #
+                          th#titulo 
+                            h5
+                              b Titulo 
+                          th#checkbox
+                            h5 
+                              b ¿Url Interna?
+                          th#url 
+                            h5
+                              b Url 
+                          th#accion
+                            h5
+                              b Acción   
+                    .guardarMenu
+                      button#botonSubmenu.btn.btn-primary.btn-sm(type="submit" tabla="tablaMenuNuevo") Guardar Menu
+  else
+    #noAdmin 
+      h1 ¡No eres administrador!  

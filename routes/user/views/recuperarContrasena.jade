@@ -1,0 +1,25 @@
+extends ../../../views/layout
+block content
+  if !user
+    #recuperar
+      h1 Recuperar Contraseña 
+      #formulario 
+        form#registrar(method="POST" name="formRegistro" action="/user/recuperarContrasena")
+          span ¿CON QUE DATO DESEA RECUPERAR SU CONTRASEÑA?
+          #opciones
+            .div 
+              label.checkbox
+                input#checkUsuario(type="checkbox" name="checkUsuario" checked)
+                span
+              span  &nbsp; CON USUARIO
+            .div 
+              label.checkbox
+                input#checkCorreo(type="checkbox" name="checkCorreo")
+                span
+              span  &nbsp; CON E-MAIL
+          input#inputUsuario(placeholder="ESCRIBA SU NOMBRE DE USUARIO" type="text" name="usuario" required)
+          input#inputCorreo(placeholder="ESCRIBA EL E-MAIL CON EL QUE SE REGISTRO" type="email" name="correo" style="display:none")
+          button.btn(type="submit") ENVIAR CONTRASEÑA
+  else
+    #noAdmin 
+      h1 ¡Ya estas Validado!

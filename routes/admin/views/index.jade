@@ -1,0 +1,14 @@
+extends ../../../views/layout
+block content
+  if user && user.rol=="administrador"
+     #admin
+      h3 
+        b ¡BIENVENIDO ADMINISTRADOR!
+      button.btn.btn-primary(type="button" onclick="location.href='/admin/editarMenu'") Administrar Menú 
+      button.btn.btn-primary(type="button" onclick="location.href='/admin/editarslider'") Administrar Slider
+      button.btn.btn-primary(type="button" onclick="location.href='/admin/editarpaginas'") Administrar Páginas
+      button.btn.btn-primary(type="button" onclick="location.href='/admin/editarUser'") Administrar Usuarios
+  else
+    #noAdmin 
+      h1 ¡No eres administrador! 
+   

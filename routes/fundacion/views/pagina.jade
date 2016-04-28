@@ -1,0 +1,55 @@
+extends ../../../views/layout
+block content
+  #linksPrincipales(style="display:none")
+  #contenidoPagina
+    if pagina
+      h1#tituloPagina #{pagina.titulo}
+      #fecha
+        #linea1
+        if pagina.categoria!="sinCategoria"
+          #centro(fecha=pagina.fechaCreacion)
+            span 
+        else
+          #linea3
+        #linea2
+      #descripcion
+        p 
+          b #{pagina.descripcion}
+      if pagina.idVideo
+        iframe(allowfullscreen frameborder="0" src="//www.youtube-nocookie.com/embed/"+pagina.idVideo+"?fs=1&hd=1&rel=0&showsearch=0&showinfo=0&iv_load_policy=3&loop=1&theme=light&modestbranding=1&autohide=1" style="width: 100%; height: 500px;")
+        #elemento
+          | !{pagina.contenido}
+      if pagina.linkImagen
+        #imagenDescripcion
+          img(src=pagina.linkImagen)
+        if !pagina.idVideo
+          #elemento
+            | !{pagina.contenido}
+      if !pagina.idVideo && !pagina.linkImagen
+        #elemento
+        | !{pagina.contenido}
+      if pagina.nombreEnlace=="apoyar"
+        #botonHacerDonacion
+          button.btn(type="button" onclick="location.href='/hacerdonacion'") 
+            b HACER DONACION
+      #redesSociales
+        #facebook
+          a(target="_blank" href="https://www.facebook.com/sharer/sharer.php?u= http://www.conexionbienestar.com/"+pagina.nombreEnlace)
+            .icon 
+          .izquierda(style="display:none")
+          .contador(style="display:none")
+            b 0
+        #twitter
+          a(target="_blank" href="https://twitter.com/?status=Me gusta esta página  http://www.conexionbienestar.com/"+pagina.nombreEnlace)
+            .icon 
+          .izquierda(style="display:none")
+          .contador(style="display:none")
+            b 0
+        #correo
+          a(target="_blank" href="https://plus.google.com/share?url=http://www.conexionbienestar.com/"+pagina.nombreEnlace)
+            .icon 
+    else
+      h1 #{error}
+  #botonSubir
+    button.btn.btn-primary.scrollup(type="button") 
+      b SUBIR

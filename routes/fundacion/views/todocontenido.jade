@@ -1,0 +1,24 @@
+extends ../../../views/layout
+block content
+  if paginas
+    #todoContenido    
+      h1 PUBLICACIONES
+      .main
+        ul.holder
+          each pagina,index in paginas
+            - var colorLetra
+            if pagina.categoria=="fisico"
+              - colorLetra="#00bb41"
+            if pagina.categoria=="emocional"
+              - colorLetra="#36abd0"
+            if pagina.categoria=="espiritual"
+              - colorLetra="#8762ab"
+            if pagina.categoria!="sinCategoria"
+              li
+                a(href=pagina.nombreEnlace style="color:"+colorLetra)
+                  span.titulo
+                    b(style="color:"+colorLetra) #{pagina.titulo}
+                p(style="color:#5c5c5c") #{pagina.descripcion}
+    #botonSubir
+      button.btn.btn-primary.scrollup(type="button") 
+        b SUBIR

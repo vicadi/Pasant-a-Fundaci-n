@@ -1,0 +1,68 @@
+*{
+	/* Universal page reset */
+	margin:0;
+	padding:0;
+}
+
+.main{
+	/* The main container div */
+	position:relative;
+	margin:50px auto;
+	width:90%;
+}
+
+.holder{
+	/* The unordered list that is to be split into pages */
+
+	width:97%;
+	overflow:hidden;
+	position:relative;
+	padding-bottom:10px;
+}
+
+.swControls{
+	position:absolute;
+	margin-top:10px;
+}
+
+a.swShowPage{
+
+	/* The links that initiate the page slide */
+
+	background-color:#444444;
+	float:left;
+	height:15px;
+	margin:4px 3px;
+	text-indent:-9999px;
+	width:15px;
+	/*border:1px solid #ccc;*/
+	
+	/* CSS3 rounded corners */
+	
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+}
+
+a.swShowPage:hover,
+a.swShowPage.active{
+	background-color:#2993dd;
+	
+	/*	CSS3 inner shadow */
+	
+	-moz-box-shadow:0 0 7px #1e435d inset;
+	/*-webkit-box-shadow:0 0 7px #1e435d inset;*/
+	box-shadow:0 0 7px #1e435d inset;
+}
+
+.holder li{
+	list-style:none outside none;
+	margin:0 4%;
+	padding:20px;
+	float:left;
+}
+
+.clear{
+	/* This class clears the floated elements */
+	clear:both;
+}

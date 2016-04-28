@@ -1,0 +1,17 @@
+extends ../../../views/layout
+block content
+  if user
+    #noAdmin 
+      h1 ¡Ya estas registrado!
+  else
+    #usuarioNuevo
+      h1 Regitrar 
+      #formulario 
+        form#registrar(method="POST" name="formRegistro" action="/user/signup")
+          input(placeholder="NOMBRE" type="text" name="nombre" required)
+          input(placeholder="APELLIDO" type="text" name="apellido" required)
+          input(placeholder="CORREO ELECTRONICO" type="email" name="email" required)
+          input(placeholder="NICKNAME" type="text" name="nickName" required)
+          input(placeholder="CONTRASEÑA" type="password" name="contrasena" required)
+          button.btn(type="submit") OK
+
